@@ -1,0 +1,26 @@
+# Variables de entorno (secretos) — nunca commitear.
+# Se versiona solo la plantilla .env.example.
+.env
+**/.env
+!**/.env.example
+
+# Artefactos de build (cada subproyecto además tiene su propio .gitignore)
+backend/target/
+frontend/dist/
+frontend/node_modules/
+frontend/.angular/
+
+# IDEs y editores
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Logs / temporales
+*.log
