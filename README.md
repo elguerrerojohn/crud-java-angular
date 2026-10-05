@@ -14,8 +14,8 @@ en el backend y en el frontend.
 > alcance. No está pensado para desplegarse en producción tal cual.
 
 ## Capturas
+<img width="1107" height="729" alt="image" src="https://github.com/user-attachments/assets/24cbc32f-e8db-4669-9876-a5b257a2642f" />
 
-![Vista principal: formulario de alta y listado de tareas](docs/screenshots/app.png)
 
 ## Stack
 
