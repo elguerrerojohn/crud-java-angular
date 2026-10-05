@@ -1,0 +1,28 @@
+@if (tareas().length === 0) {
+  <p class="vacio">No hay tareas para mostrar.</p>
+} @else {
+  <ul class="lista" role="list">
+    @for (tarea of tareas(); track tarea.id) {
+      <li [class]="claseFila(tarea.estado)">
+        <div class="tarea__main">
+          <h3 class="tarea__titulo">{{ tarea.titulo }}</h3>
+          @if (tarea.descripcion) {
+            <p class="tarea__desc">{{ tarea.descripcion }}</p>
+          }
+        </div>
+
+        <span [class]="claseEstado(tarea.estado)">{{ etiquetaEstado(tarea.estado) }}</span>
+
+        <div class="tarea__fecha">
+          <span class="tarea__fecha-label">Vence</span>
+          <span class="tarea__fecha-val">{{ tarea.fechaVencimiento || '—' }}</span>
+        </div>
+
+        <div class="tarea__acciones">
+          <button type="button" class="btn btn--sm" (click)="editar.emit(tarea)">Editar</button>
+          <button type="button" class="btn btn--sm btn--danger" (click)="eliminar.emit(tarea.id)">Eliminar</button>
+        </div>
+      </li>
+    }
+  </ul>
+}

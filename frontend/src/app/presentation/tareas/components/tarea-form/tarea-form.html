@@ -1,0 +1,52 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2 class="form__titulo">{{ esEdicion() ? 'Editar tarea' : 'Nueva tarea' }}</h2>
+
+  <div class="campo">
+    <label for="titulo">Título *</label>
+    <input id="titulo" type="text" formControlName="titulo" required
+           placeholder="¿Qué hay que hacer?"
+           [attr.aria-invalid]="form.controls.titulo.touched && form.controls.titulo.invalid"
+           aria-describedby="titulo-error" />
+    @if (form.controls.titulo.touched && form.controls.titulo.invalid) {
+      <small id="titulo-error" class="error" role="alert">
+        @if (form.controls.titulo.errors?.['required']) { El título es obligatorio. }
+        @else if (form.controls.titulo.errors?.['maxlength']) { Máximo 255 caracteres. }
+      </small>
+    }
+  </div>
+
+  <div class="campo">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" rows="2" formControlName="descripcion" placeholder="Detalles (opcional)"
+              [attr.aria-invalid]="form.controls.descripcion.touched && form.controls.descripcion.invalid"
+              aria-describedby="descripcion-error"></textarea>
+    @if (form.controls.descripcion.touched && form.controls.descripcion.errors?.['maxlength']) {
+      <small id="descripcion-error" class="error" role="alert">Máximo 1000 caracteres.</small>
+    }
+  </div>
+
+  <div class="fila">
+    <div class="campo">
+      <label for="estado">Estado</label>
+      <select id="estado" formControlName="estado">
+        @for (estado of estados; track estado) {
+          <option [value]="estado">{{ estado }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="fechaVencimiento">Vencimiento</label>
+      <input id="fechaVencimiento" type="date" formControlName="fechaVencimiento" />
+    </div>
+  </div>
+
+  <div class="acciones">
+    <button type="submit" class="btn btn--primary" [disabled]="form.invalid">
+      {{ esEdicion() ? 'Guardar cambios' : 'Crear tarea' }}
+    </button>
+    @if (esEdicion()) {
+      <button type="button" class="btn" (click)="onCancelar()">Cancelar</button>
+    }
+  </div>
+</form>

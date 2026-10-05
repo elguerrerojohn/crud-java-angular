@@ -1,0 +1,136 @@
+:host {
+  display: block;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+
+  &--solo-lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  // Permite que el item del grid se encoja por debajo del ancho de su contenido,
+  // evitando el overflow horizontal de la página.
+  min-width: 0;
+
+  &--form {
+    position: sticky;
+    top: 92px;
+
+    @media (max-width: 960px) {
+      position: static;
+    }
+  }
+}
+
+.lista__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+}
+
+.filtro {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+
+  select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    color: var(--text);
+    background: var(--surface-2);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--ring);
+    }
+  }
+}
+
+.alerta {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid #fecdd3;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+.cargando {
+  color: var(--text-muted);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.paginador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+
+  &__info {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .btn {
+    cursor: pointer;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    transition: all 0.15s ease;
+
+    &--sm {
+      font-size: 0.82rem;
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: var(--primary);
+      color: var(--primary-hover);
+      background: var(--primary-soft);
+    }
+  }
+}

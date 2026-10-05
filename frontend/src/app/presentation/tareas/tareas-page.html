@@ -1,0 +1,38 @@
+<section class="layout">
+  <div class="panel panel--form">
+    <app-tarea-form
+      [tareaEnEdicion]="enEdicion()"
+      (guardar)="onGuardar($event)"
+      (cancelar)="onCancelarEdicion()"
+    />
+  </div>
+
+  <div class="panel panel--lista">
+    <div class="lista__header">
+      <h2>Tareas</h2>
+      <div class="filtro">
+        <label for="filtro">Filtrar:</label>
+        <select id="filtro" (change)="onFiltroCambio($any($event.target).value)">
+          <option value="">Todas</option>
+          @for (estado of estados; track estado) {
+            <option [value]="estado">{{ estado }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    @if (error()) {
+      <p class="alerta" role="alert" aria-live="assertive">{{ error() }}</p>
+    }
+
+    @if (cargando()) {
+      <p class="cargando">Cargando…</p>
+    } @else {
+      <app-tarea-list
+        [tareas]="tareas()"
+        (editar)="onEditar($event)"
+        (eliminar)="onEliminar($event)"
+      />
+    }
+  </div>
+</section>
